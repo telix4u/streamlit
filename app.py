@@ -1,20 +1,30 @@
 
 import streamlit as st
 
-# The Titles
-st.title('🤖My First AI Web App')
-st.header('Welcome to the Dashboard')
-st.subheader('Sub-Section: Data Analysis')
+st.title("🧮 Agentic Calculator")
 
-# Standard text
-st.write("This is a standard text. st.write() is the 'print' function of Streamlit")
+# Columns
+col1, col2 = st.columns(2)
 
-st.text("This is fixed-width text, good for showing raw code or logs.")
+with col1:
+    first_number=st.number_input('First Number', value=0)
 
-st.markdown("**Bold Text**, *Italic text*, and even [Links](https://streamlit.io).")
+with col2:
+    second_number=st.number_input('Second Number', value=0)
 
-# Status Message
-st.success("The AI successfully processed your request!")
-st.error("Critical Error: API Key missing.")
-st.warning("Warning: The model might hallucinate.")
-st.info("Fun Fact: Llama-3 has 8 billion parameters.")
+    operation = st.selectbox('Select your Operation:', ["Add", "Subtract", "Multiply","Divide"])
+    if st.button('Calculate'):
+      if operation == "Add":
+        result = first_number + second_number
+        st.success(f"The result is {result}")
+      elif operation == "Subtract":
+        result = first_number - second_number
+        st.success(f"The result is {result}")
+      elif operation == "Multiply":
+        result = first_number * second_number
+        st.success(f"The result is {result}")
+      elif operation == "Divide":
+        result = first_number / second_number
+        st.success(f"The result is {result}")
+      else:
+        st.warning("Invalid Operation")
